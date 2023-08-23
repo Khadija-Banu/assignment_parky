@@ -28,6 +28,7 @@
                   <tr>
                     <td>{{$i++}}</td>
                     <td>{{$post->title}}</td>
+                    
                     <td>
                       @if(file_exists(storage_path().'/app/public/post/'.$post->image) &&(!is_null($post->image)))
                       <img src="{{asset('storage/post/'. $post->image)}}"height="100px"width="150px">

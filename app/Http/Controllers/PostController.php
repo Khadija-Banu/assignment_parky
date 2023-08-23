@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Image;
@@ -21,8 +22,12 @@ class PostController extends Controller
         return view('backend.create',compact('users'));
     }
 
-    public function store(Request $request){
+    public function store(PostRequest $request){
        try{
+        $request->validate([
+            'title'=>'required',
+        ]);
+
         $data=$request->all();
         if($request->image){
             $image=$this->UploadImage($request->title,$request->image);
@@ -33,7 +38,7 @@ class PostController extends Controller
         return redirect()->route('post_index');
        }
        catch(Exception $e){
-        dd($e->getMessage());
+        return redirect()-route('post_create')->withMessage($e->getMessage());
        }
     }
 

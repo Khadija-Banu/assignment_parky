@@ -22,14 +22,23 @@
   </div>
     <div class="form-group mt-2">
       <input type="text" name="title" class="form-control" placeholder="Enter title">
+   
+       
+      @error('title')
+      <span class="text-danger">{{ $message }}</span>
+  @enderror
+   
     </div>
 
     <div class="form-group mt-2">
       <input type="file" name="image" class="form-control" placeholder="Enter image">
     </div>
     <div class="form-group mt-2">
-   <textarea name="description" class="form-control" placeholder="Enter description"></textarea>
-    </div>
+   <textarea name="description" class="form-control" value="{{old('description')}}" placeholder="Enter description"></textarea>
+   @error('description')
+   <span class="text-danger">{{ $message }}</span>
+@enderror
+  </div>
     <div class="form-group mt-2">
  <input type="date"  class="form-control" name="date" placeholder="Enter date">
          </div>
