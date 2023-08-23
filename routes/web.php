@@ -22,9 +22,9 @@ Route::get('/', function () {
 
 
 //backend route
-Route::get('/master',function(){
-    return view('backend.master');
-});
+
+Route::get('/user_list',[ProfileController::class,'userList'])->name('user_list');
+
 Route::get('/index',[PostController::class,'index'])->name('post_index');
 Route::get('/create',[PostController::class,'create'])->name('post_create');
 Route::post('/store',[PostController::class,'store'])->name('post_store');

@@ -11,6 +11,15 @@
 
 <form action="{{route('post_store')}}" method="POST" enctype="multipart/form-data">
   @csrf
+  <div class="form-group mt-2">
+    <select class="form-select" name="user_id" >
+      <option value="">Select author name</option>
+      @foreach ($users as $user)
+      <option value="{{$user->id}}" >{{$user->name}}</option>
+      @endforeach
+  
+    </select>
+  </div>
     <div class="form-group mt-2">
       <input type="text" name="title" class="form-control" placeholder="Enter title">
     </div>
@@ -26,8 +35,6 @@
          </div>
     <button type="submit" class="btn btn-primary mt-2">Submit</button>
   </form>
-</div>
-</div>
 </div>
 </div>
 @endsection

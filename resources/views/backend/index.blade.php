@@ -4,10 +4,9 @@
 
 
   <div class="container m-5 p-5">
-
- 
     <div class="card">
-        <div class="card-header">Post List  <a class="btn btn-sm btn-primary " style="margin-left: 30px" href="{{route('post_create')}}">Add new Posts</a></div>
+        <div class="card-header">Post List  <a class="btn btn-sm btn-primary " style="margin-left: 30px" href="{{route('post_create')}}">Add new Posts</a> 
+          <a class="btn btn-sm btn-primary " style="margin-left: 30px" href="{{route('user_list')}}">User List</a></div>
         <div class="card-body p-5">
 
             <table class="table table-sm table-bordered">
@@ -38,19 +37,16 @@
                     </td>
                     <td>{{$post->description}}</td>
                     <td>{{$post->date}}</td>
-                 
                     <td>
                       <a class="btn btn-sm btn-warning" href="{{route('post_edit',$post->id)}}">Edit</a>
                       <a class="btn btn-sm btn-danger" href="{{route('post_delete',$post->id)}}">Delete</a>
                     </td>
                   </tr>
-    
-                  @endforeach
-                    
-                
-             
+                  
+                  @endforeach    
                 </tbody>
               </table>
+              {{ $posts->links() }} 
         </div>
 
 </div> </div>

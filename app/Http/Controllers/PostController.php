@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
+use App\Models\User;
 use Image;
 
 use Illuminate\Http\Request;
@@ -11,12 +12,13 @@ class PostController extends Controller
 {
     //
     public function index(){
-       $posts=Post::all();
+        $posts = Post::paginate(5);
         return view('backend.index',compact('posts'));
     }
 
     public function create(){
-        return view('backend.create');
+        $users=User::all();
+        return view('backend.create',compact('users'));
     }
 
     public function store(Request $request){
@@ -26,7 +28,7 @@ class PostController extends Controller
             $image=$this->UploadImage($request->title,$request->image);
         }
         $data['image']=$image;
-       
+      
         Post::create($data);
         return redirect()->route('post_index');
        }
@@ -36,9 +38,10 @@ class PostController extends Controller
     }
 
     public function edit($id){
-   $post=Post::find($id);
-        return view('backend.Edit',compact('post'));
+        $post = Post::find($id);
+        return view('backend.edit', compact('post'));
     }
+    
     public function update(Request $request,$id){
 
         try{
@@ -77,11 +80,9 @@ class PostController extends Controller
     }
 
     private function unlink($image){
-     
-$pathToUpload=storage_path().'/app/public/post/';
-if($image != '' && file_exists($pathToUpload.$image)){
-
-    @unlink($pathToUpload.$image);
-}
+        $pathToUpload=storage_path().'/app/public/post/';
+        if($image != '' && file_exists($pathToUpload.$image)){
+            @unlink($pathToUpload.$image);
+        }
     }
 }

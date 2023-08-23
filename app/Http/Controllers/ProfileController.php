@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use  App\Models\User;
 
 class ProfileController extends Controller
 {
+
+    public function userList(){
+        $users=User::all();
+        return view('backend.user_list',compact('users'));
+    }
+
+
     /**
      * Display the user's profile form.
      */
