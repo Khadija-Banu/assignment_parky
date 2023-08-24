@@ -6,7 +6,8 @@
   <div class="container m-5 p-5">
     <div class="card">
         <div class="card-header">Post List  <a class="btn btn-sm btn-primary " style="margin-left: 30px" href="{{route('post_create')}}">Add new Posts</a> 
-          <a class="btn btn-sm btn-primary " style="margin-left: 30px" href="{{route('user_list')}}">User List</a></div>
+          <a class="btn btn-sm btn-success "  href="{{route('user_list')}}">User List</a>
+          <a href="{{route('f_home')}}" class="btn btn-sm btn-secondary">Home Page</a></div>
         <div class="card-body p-5">
 
             <table class="table table-sm table-bordered">
@@ -49,6 +50,8 @@
                   @endforeach    
                 </tbody>
               </table>
+              
+              {{-- pegination link show --}}
               {{ $posts->links() }} 
         </div>
 

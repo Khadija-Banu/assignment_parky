@@ -13,6 +13,7 @@ use  App\Models\User;
 class ProfileController extends Controller
 {
 
+    //Registration user list show
     public function userList(){
         $users=User::all();
         return view('backend.user_list',compact('users'));

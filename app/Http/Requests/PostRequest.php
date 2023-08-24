@@ -19,11 +19,13 @@ class PostRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
+
+     //validation in post create page title and description field
     public function rules(): array
     {
         return [
             'title'=> 'required',
-            'description' => 'required|max:10',
+            'description' => 'required|min:20',
         ];
     }
 }

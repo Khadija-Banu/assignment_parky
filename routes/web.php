@@ -22,11 +22,16 @@ Route::get('/', function () {
 
 
 
-//backend route
+//frontend search route
 Route::get('/search',[SearchController::class,'search'])->name('search');
+
+// frontend home route
 Route::get('/f_home',[FrontendController::class,'home'])->name('f_home');
+
+//user list route
 Route::get('/user_list',[ProfileController::class,'userList'])->name('user_list');
 
+//backend route
 Route::get('/index',[PostController::class,'index'])->name('post_index');
 Route::get('/create',[PostController::class,'create'])->name('post_create');
 Route::post('/store',[PostController::class,'store'])->name('post_store');

@@ -11,17 +11,19 @@ use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
-    //
+    //post list show
     public function index(){
          $posts = Post::paginate(5);
         return view('backend.index',compact('posts'));
     }
 
+    //New post create page open
     public function create(){
         $users=User::all();
         return view('backend.create',compact('users'));
     }
 
+    //New post store in database
     public function store(PostRequest $request){
        try{
         $request->validate([
@@ -42,11 +44,13 @@ class PostController extends Controller
        }
     }
 
+    //Individual post edit
     public function edit($id){
         $post = Post::find($id);
         return view('backend.edit', compact('post'));
     }
     
+    //Individual post update
     public function update(Request $request,$id){
 
         try{
@@ -63,6 +67,8 @@ class PostController extends Controller
             dd($e->getMessage());
         }  
     }
+
+    //Individual post delete
     public function delete($id){
         $data=Post::find($id);
         $data->delete();
@@ -70,7 +76,7 @@ class PostController extends Controller
         
     }
 
-
+    //Image upload function
     public function UploadImage($title,$image){
        $timestamp=str_replace([' ',':'],'-',Carbon::now()->toDateTimeString());
        $file_name=$timestamp . '-'.$title. '.' .$image->getClientOriginalExtension();
@@ -84,6 +90,7 @@ class PostController extends Controller
        return $file_name;
     }
 
+    //Image update then previous image delete in storage folder
     private function unlink($image){
         $pathToUpload=storage_path().'/app/public/post/';
         if($image != '' && file_exists($pathToUpload.$image)){
