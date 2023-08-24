@@ -3,7 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,8 @@ Route::get('/', function () {
 
 
 //backend route
-
+Route::get('/search',[SearchController::class,'search'])->name('search');
+Route::get('/f_home',[FrontendController::class,'home'])->name('f_home');
 Route::get('/user_list',[ProfileController::class,'userList'])->name('user_list');
 
 Route::get('/index',[PostController::class,'index'])->name('post_index');
