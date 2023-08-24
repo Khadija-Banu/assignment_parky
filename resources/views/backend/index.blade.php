@@ -13,6 +13,7 @@
                 <thead class="table-dark">
                   <tr>
                     <th scope="col">Ser No</th>
+                    <th>Author Name</th>
                     <th scope="col">Title</th>
                     <th>Image</th>
                     <th scope="col">Description</th>
@@ -27,6 +28,7 @@
                   @foreach ($posts as $post)
                   <tr>
                     <td>{{$i++}}</td>
+                    <td>{{$post->user->name?? ''}}</td>
                     <td>{{$post->title}}</td>
                     
                     <td>
